@@ -14,10 +14,12 @@ public class Main {
 
         List<Sample> samples = runInfoParser.getAll_samples();
 
-        Downloader downloader = new Downloader(args[1]);
+        Downloader downloader = new Downloader(args[1], runInfoParser.getNumberOfSamples());
         for(Sample s : samples){
             downloader.downloadSample(s);
         }
+
+        downloader.getOutput().close();
 
     }
 }

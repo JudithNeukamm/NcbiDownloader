@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RunInfoParser {
@@ -19,6 +18,7 @@ public class RunInfoParser {
     private int index_bio_project;
 
     private List<Sample> all_samples = new ArrayList<>();
+    private int numberOfSamples =0;
 
 
     public RunInfoParser(String filepath){
@@ -37,16 +37,26 @@ public class RunInfoParser {
         try {
             String line = br.readLine();
             String[] headerline = line.split("\t");
-            List<String> header_list = Arrays.asList(headerline);
-            index_library_layout = header_list.indexOf("LibraryLayout_s");
-            index_sample_name = header_list.indexOf("Sample_Name_s");
-            index_experiment = header_list.indexOf("Experiment_s");
-            index_run = header_list.indexOf("Run_s");
-            index_bio_project = header_list.indexOf("BioProject_s");
+
+
+            for(int i = 0; i < headerline.length; i++){
+                String colname = headerline[i];
+               if(colname.contains("LibraryLayout")){
+                   index_library_layout = i;
+               } else if(colname.contains("Sample_Name")){
+                   index_sample_name = i;
+               } else if(colname.contains("Experiment")){
+                   index_experiment = i;
+               } else if(colname.contains("BioProject")){
+                   index_bio_project = i;
+               }else if(colname.contains("Run")){
+                   index_run = i;
+               }
+            }
 
             while ((line = br.readLine()) != null) {
+                numberOfSamples++;
                 String[] line_splitted = line.split("\t");
-
                 parseInfo(line_splitted);
 
             }
@@ -73,5 +83,9 @@ public class RunInfoParser {
 
     public List<Sample> getAll_samples() {
         return all_samples;
+    }
+
+    public int getNumberOfSamples() {
+        return numberOfSamples;
     }
 }
