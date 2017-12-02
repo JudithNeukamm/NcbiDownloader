@@ -13,4 +13,4 @@ paired-end sequenced files. In case of paired-end sequencing, '_R1' and '_R2' is
 How to run:\
 Either run the code itself or build a jar file, that can be run as follows:
 
-*java -jar NcbiDownloader.jar </absolute/path/to/SraInfoTable.txt> </absolute/path/tp/output>*  
+*java -jar NcbiDownloader.jar </absolute/path/to/SraInfoTable.txt> </absolute/path/to/output>*  
