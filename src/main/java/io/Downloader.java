@@ -53,7 +53,7 @@ public class Downloader {
 
             output.write( "cd $pat" + File.separator + f + "\n");
             output.write( "fastq-dump --split-files " + sample.getSRRrun() + "\n");
-            output.write( "mv " + sample.getSRRrun() + "_2.fq " + sample.getSRRrun() + "_R2.fq " +"\n");
+            output.write( "mv " + sample.getSRRrun() + "_2.* " + sample.getSRRrun() + "_R2.fastq " +"\n");
             samplesDonwloaded++;
             output.write("echo '("+ samplesDonwloaded +"/"+ numberOfLines+") samples downloaded'\n");
         }
