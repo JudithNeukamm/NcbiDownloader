@@ -34,7 +34,7 @@ public class Downloader {
         }
     }
 
-    public void downloadSample(Sample sample) throws IOException {
+    public void writeDownloadScriptNCBI(Sample sample) throws IOException {
 
         if(sample.getLibrarylayout().equals("SINGLE")){
             String f = File.separator + result_folder + File.separator + sample.getBioproject() +
@@ -57,6 +57,12 @@ public class Downloader {
             samplesDonwloaded++;
             output.write("echo '("+ samplesDonwloaded +"/"+ numberOfLines+") samples downloaded'\n");
         }
+
+    }
+
+    public void writeDownloadScriptHMP(String url) throws IOException {
+
+        output.write("wget " + url + "\n");
 
     }
 
